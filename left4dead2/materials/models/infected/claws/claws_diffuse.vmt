@@ -1,0 +1,64 @@
+vertexlitgeneric
+
+{
+$baseTexture "models\infected\Claws\claw_color"
+$lightwarptexture "models\survivors\coach\coach_head_wrp"
+$halflambert 0
+$diffuseexp 1
+$bumpmap "models\infected\Claws\claws_normal"
+$phong 1
+$phongboost 9
+$phongexponent 30
+$ambientocclusion 1
+$phongtint "[0 0 0]"
+$phongfresnelranges "[.1 .5 1]"
+$allowdiffusemodulation 0
+$ambientboost 0
+$color2 "[1.5 1.5 1.5]"
+
+$detail "models/infected/common/l4d2/ci_burning"
+	$seamless_detail 1
+	$seamless_scale ".005"
+	$detailscale 4
+	$detailblendfactor .001 
+	$detailblendmode 2
+
+	$bbqamount 1
+	$BurnLevel 0
+
+	Proxies
+	{
+		BBQLevel
+		{
+			resultVar $bbqamount
+		}
+		BurnLevel
+		{
+			resultVar $burnlevel
+		}
+		Multiply
+		{
+			srcVar1 $phongfresnelrange_0
+			srcVar2 $bbqamount
+			resultVar "$phongfresnelranges[0]"
+		}
+		Multiply
+		{
+			srcVar1 $phongfresnelrange_1
+			srcVar2 $bbqamount
+			resultVar "$phongfresnelranges[1]"
+		}
+		Multiply
+		{
+			srcVar1 $phongfresnelrange_2
+			srcVar2 $bbqamount
+			resultVar "$phongfresnelranges[2]"
+		}
+		Equals
+		{
+			srcVar1 $BurnLevel
+			resultVar $detailblendfactor
+		}
+	}
+
+}
